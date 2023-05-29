@@ -1,13 +1,14 @@
-let startTime;
-let elapsedTime = 0;
+let startTime,
+  elapsedTime = 0;
 let timerInterval;
 let isRunning = false;
+let stoppedCount = 1;
 
 const display = document.getElementById("display");
 const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
 const resetButton = document.getElementById("reset");
-const stoppedTime = document.getElementById("stoppedTime");
+const stoppedTimes = document.getElementById("stoppedTimes");
 
 function startTimer() {
   startTime = Date.now() - elapsedTime;
@@ -25,18 +26,19 @@ function stopTimer() {
   startButton.disabled = false;
   stopButton.disabled = true;
   resetButton.disabled = false;
-  stoppedTime.innerHTML = `Stopped at: ${formatTime(elapsedTime)}`;
+  addStoppedTime(formatTime(elapsedTime));
 }
 
 function resetTimer() {
   clearInterval(timerInterval);
   elapsedTime = 0;
   isRunning = false;
-  display.innerHTML = "00:00:00";
+  display.innerHTML = "00:00:00:00";
   startButton.disabled = false;
   stopButton.disabled = true;
   resetButton.disabled = true;
-  stoppedTime.innerHTML = "";
+  stoppedTimes.innerHTML = "";
+  stoppedCount = 1;
 }
 
 function updateTime() {
@@ -63,6 +65,13 @@ function formatTime(time) {
 
 function padNumber(number) {
   return number.toString().padStart(2, "0");
+}
+
+function addStoppedTime(time) {
+  const li = document.createElement("li");
+  li.textContent = ` ${stoppedCount}.   ${time}`;
+  stoppedTimes.appendChild(li);
+  stoppedCount++;
 }
 
 startButton.addEventListener("click", startTimer);

@@ -1,13 +1,43 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 100px;
 }
 
 #display {
-  font-size: 36px;
+  font-size: 100px;
   margin-bottom: 20px;
 }
 
 #buttons button {
   margin-right: 10px;
+  width: 100px;
+  height: 50px;
+  color: white;
+  border-color: white;
+}
+
+#stoppedTimes {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  font-size: 30px;
+}
+
+#stoppedTimes li {
+  margin-bottom: 15px;
+}
+#start {
+  background-color: green;
+}
+#stop {
+  background-color: rgb(88, 88, 231);
+}
+#reset {
+  background-color: rgb(255, 0, 0);
 }
